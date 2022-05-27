@@ -1,31 +1,47 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { useEffect, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import DisplayTable from '../components/DisplayTable';
 import SearchBar from '../components/SearchBar';
-import { useAxios } from '../utils/hooks/useApi';
+import axiosApi from '../utils/api/axiosApi';
 
 import { user } from '../utils/interface/userInterface';
 
 const Users = () => {
    const navigate = useNavigate();
 
-   const users = useAxios('users');
+   const [users, setUsers] = useState([]);
+
+   const fetch = useCallback(() => {
+      axiosApi('users', setUsers);
+   }, []);
+
+   useEffect(() => {
+      fetch();
+   }, [fetch]);
 
    const [searchUser, setSearchUser] = useState<string>('');
 
-   useEffect(() => {
-      const test = users.filter((user: user) => {
+   const testFct = () => {
+      const filteredUsers = users.filter((user: user) => {
          const { name, username, email } = user;
-         const result =
-            email.toLowerCase().includes(searchUser) || username.toLowerCase().includes(searchUser) || name.toLowerCase().includes(searchUser);
+         if (searchUser === '') {
+            return users;
+         } else {
+            const result =
+               email.toLowerCase().includes(searchUser) || username.toLowerCase().includes(searchUser) || name.toLowerCase().includes(searchUser);
 
-         return result;
+            return result;
+         }
       });
 
-      console.log(test);
-   }, [searchUser]);
+      return filteredUsers;
+   };
+
+   // useEffect(() => {
+
+   //    console.log(filteredUsers);
+   // }, [searchUser]);
 
    const handleRoute = (userId: number) => {
       navigate(`posts/${userId}`);
@@ -46,7 +62,7 @@ const Users = () => {
                </tr>
             </thead>
             <tbody>
-               {users.map((user: user) => {
+               {testFct().map((user: user) => {
                   return (
                      <tr
                         key={user.id}

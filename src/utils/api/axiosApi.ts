@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const axiosApi = async (element: string, method: React.Dispatch<React.SetStateAction<never[]>>) => {
+const axiosApi = async (element: 'users' | 'comments' | `posts/${number}`, method: React.Dispatch<React.SetStateAction<never[]>>) => {
    try {
       const request = await axios.get(`https://jsonplaceholder.typicode.com/${element}`);
       const response = request.data;

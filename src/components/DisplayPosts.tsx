@@ -1,9 +1,14 @@
 import { post } from '../utils/interface/userInterface';
 
-const DisplayPosts = ({ posts }: { posts: post[] }) => {
-   return posts.map((post) => {
-      return <p>{post.title}</p>;
-   });
+const DisplayPosts = ({ post }: { post: post }) => {
+   return (
+      <>
+         <tr key={post.id}>
+            <td>{post.title}</td>
+            <td>{post.body}</td>
+         </tr>
+      </>
+   );
 };
 
 export default DisplayPosts;

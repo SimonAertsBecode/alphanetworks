@@ -1,19 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import DisplayTable from '../components/DisplayTable';
-import axiosApi from '../utils/axiosApi';
-import { userInfos } from '../utils/userInterface';
+import SearchBar from '../components/SearchBar';
+import { useAxios } from '../utils/hooks/useApi';
+
+import { user } from '../utils/interface/userInterface';
 
 const Users = () => {
-   const [users, setUsers] = useState([]);
+   const navigate = useNavigate();
+
+   const users = useAxios('users');
+
+   const [searchUser, setSearchUser] = useState<string>('');
 
    useEffect(() => {
-      axiosApi('users', setUsers);
-   }, []);
+      const test = users.filter((user: user) => {
+         const { name, username, email } = user;
+         const result =
+            email.toLowerCase().includes(searchUser) || username.toLowerCase().includes(searchUser) || name.toLowerCase().includes(searchUser);
 
-   if (!users) return <p>oops something went wrong while calling users...</p>;
+         return result;
+      });
+
+      console.log(test);
+   }, [searchUser]);
+
+   const handleRoute = (userId: number) => {
+      navigate(`posts/${userId}`);
+   };
+
+   if (!users) return <p>Oops something went wrong while calling users...</p>;
 
    return (
       <section className='users'>
+         <SearchBar setSearchUser={setSearchUser} />
          <table>
             <caption>Users</caption>
             <thead>
@@ -24,8 +46,17 @@ const Users = () => {
                </tr>
             </thead>
             <tbody>
-               {users.map((user: userInfos) => {
-                  return <DisplayTable id={user.id} name={user.name} username={user.username} email={user.email} />;
+               {users.map((user: user) => {
+                  return (
+                     <tr
+                        key={user.id}
+                        onClick={() => {
+                           handleRoute(user.id);
+                        }}
+                     >
+                        <DisplayTable id={user.id} name={user.name} username={user.username} email={user.email} />
+                     </tr>
+                  );
                })}
             </tbody>
          </table>

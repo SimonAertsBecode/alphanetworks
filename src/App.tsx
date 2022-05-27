@@ -1,9 +1,10 @@
 import Users from './pages/Users';
+import Routes from './routes/Routes';
 
 function App() {
    return (
       <section className='App'>
-         <Users />
+         <Routes />
       </section>
    );
 }

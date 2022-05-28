@@ -1,19 +1,23 @@
-import { useMemo } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import DisplayTable from '../components/DisplayTable';
 import SearchBar from '../components/SearchBar';
+
 import { useAxios } from '../utils/hooks/useApi';
 
 import { user } from '../utils/interface/userInterface';
 
 const Users = () => {
-   const navigate = useNavigate();
-
    const users = useAxios('users');
 
    const [searchUser, setSearchUser] = useState<string>('');
+
+      const navigate = useNavigate();
+
+      const handleRoute = (id: number, user: user) => {
+         navigate(`posts/${id}`, { state: { user } });
+      };
 
    const filteredUsers = () => {
       const filteredUsers = users.filter((user: user) => {
@@ -33,10 +37,6 @@ const Users = () => {
       return filteredUsers;
    };
 
-   const handleRoute = (user: any) => {
-      navigate(`posts/${user.id}`, {state : { user }});
-   };
-
    if (!users) return <p>Oops something went wrong while calling users...</p>;
 
    return (
@@ -52,23 +52,11 @@ const Users = () => {
                </tr>
             </thead>
             <tbody>
-               {filteredUsers().map((user: user) => {
-                  return (
-                     <tr
-                        key={user.id}
-                        onClick={() => {
-                           handleRoute(user);
-                        }}
-                     >
-                        <DisplayTable
-                           id={user.id}
-                           name={user.name}
-                           username={user.username}
-                           email={user.email}
-                        />
-                     </tr>
-                  );
-               })}
+               <DisplayTable
+                  objects={filteredUsers()}
+                  properties={[{ key: 'name' }, { key: 'username' }, { key: 'email' }]}
+                  navigation={handleRoute}
+               />
             </tbody>
          </table>
       </section>

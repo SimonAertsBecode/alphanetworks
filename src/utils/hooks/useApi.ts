@@ -1,16 +1,13 @@
 import { useState, useEffect, useCallback } from 'react';
 import axiosApi from '../api/axiosApi';
 
-export const useAxios = (element: 'users' | 'comments' | `posts/${number}`) => {
+export const useAxios = (element: 'users' | 'comments' | `posts?userId=${number}`) => {
    const [datas, setDatas] = useState([]);
 
-   const fetch = useCallback(() => {
-      axiosApi(element, setDatas);
-   }, [element]);
-
    useEffect(() => {
-      fetch();
-   }, [fetch]);
+      axiosApi(element, setDatas);
+      console.log('api useEffect called');
+   }, [element]);
 
    return datas;
 };

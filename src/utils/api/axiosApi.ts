@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosApi = async (
-   element: 'users' | 'comments' | `posts/${number}`,
+   element: 'users' | 'comments' | `posts?userId=${number}`,
    method: React.Dispatch<React.SetStateAction<never[]>>
 ) => {
    try {

@@ -1,15 +1,14 @@
 import { useAxios } from '../utils/hooks/useApi';
 import { Location } from 'history';
 import { useLocation, useParams } from 'react-router-dom';
-import DisplayPosts from '../components/DisplayPosts';
+import DisplayTable from '../components/DisplayTable';
 
 const UserPosts = () => {
    // {userId : string} is mandatory otherwise 'userId' can be undefined
    const { userId } = useParams() as { userId: string };
    const { state } = useLocation();
-   
 
-   const post = useAxios(`posts/${parseInt(userId)}`);
+   const post = useAxios(`posts?userId=${parseInt(userId)}`);
 
    return (
       <div>
@@ -22,7 +21,7 @@ const UserPosts = () => {
                </tr>
             </thead>
             <tbody>
-               <DisplayPosts post={post} />
+               <DisplayTable objects={post} properties={[{ key: 'title' }, { key: 'body' }]} />
             </tbody>
          </table>
       </div>

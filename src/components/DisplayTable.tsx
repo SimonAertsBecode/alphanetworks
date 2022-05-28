@@ -1,12 +1,33 @@
-import React from 'react';
-import { user } from '../utils/interface/userInterface';
+import { PropsWithChildren } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const DisplayTable: React.FC<user> = ({ name, username, email }) => {
+import {user} from '../utils/interface/userInterface'
+
+interface Props<ObjectType> {
+   objects: ObjectType[];
+   properties: {
+      [key: string]: keyof ObjectType;
+   }[];
+   navigation?(id : number, user? : user) : void
+}
+
+const DisplayTable = <ObjectType extends { id: number }>(  
+   props: PropsWithChildren<Props<ObjectType>>
+) => {
+   const { objects, properties, navigation } = props;
+
    return (
       <>
-         <th>{name}</th>
-         <td>{username}</td>
-         <td>{email}</td>
+         {objects.map((object : any) => {
+            return (
+               <tr key={object.id} onClick={navigation ? ()=>navigation(object.id) : undefined}>
+                  {properties.map((propertie) => {
+                     const { key } = propertie;
+                     return <td key={key as string}>{object[key]}</td>;
+                  })}
+               </tr>
+            );
+         })}
       </>
    );
 };

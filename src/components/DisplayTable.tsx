@@ -1,5 +1,4 @@
-import { PropsWithChildren, ReactElement } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { PropsWithChildren } from 'react';
 
 import { user } from '../utils/interface/userInterface';
 
@@ -12,7 +11,7 @@ interface Props<ObjectType> {
 }
 
 const DisplayTable = <ObjectType extends { id: number }>(props: PropsWithChildren<Props<ObjectType>>) => {
-   const { objects, properties, navigation } = props;
+   const { objects, properties, navigation, children } = props;
 
    const displayKeys = (tag: 'th' | 'td', object?: any): JSX.Element[] => {
       return properties.map((propertie) => {
@@ -32,6 +31,7 @@ const DisplayTable = <ObjectType extends { id: number }>(props: PropsWithChildre
                return (
                   <tr key={object.id} onClick={navigation ? () => navigation(object.id, object) : undefined}>
                      {displayKeys('td', object)}
+                     {children}
                   </tr>
                );
             })}

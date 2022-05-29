@@ -1,23 +1,26 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import DisplayTable from '../components/DisplayTable';
 import SearchBar from '../components/SearchBar';
 
-import { useAxios } from '../utils/hooks/useApi';
+import { useAxios } from '../utils/hooks/useAxios';
 
 import { user } from '../utils/interface/userInterface';
 
 const Users = () => {
-   const { datas: users } = useAxios('users');
+   const users = useAxios('users');
 
    const [searchUser, setSearchUser] = useState<string>('');
 
    const navigate = useNavigate();
 
-   const handleRoute = (id: number, user: user) => {
-      navigate(`posts/${id}`, { state: { user } });
-   };
+   const handleRoutes = useCallback(
+      (id: number, user: user) => {
+         navigate(`posts/${id}`, { state: { user } });
+      },
+      [navigate]
+   );
 
    const filteredUsers = () => {
       const filteredUsers = users.filter((user: user) => {
@@ -47,7 +50,7 @@ const Users = () => {
             <DisplayTable
                objects={filteredUsers()}
                properties={[{ key: 'name' }, { key: 'username' }, { key: 'email' }]}
-               navigation={handleRoute}
+               navigation={handleRoutes}
             />
          </table>
       </section>

@@ -1,7 +1,7 @@
-import { useAxios } from '../utils/hooks/useApi';
-import { Location } from 'history';
+import { useAxios } from '../utils/hooks/useAxios';
 import { useLocation, useParams } from 'react-router-dom';
 import DisplayTable from '../components/DisplayTable';
+import CommentCount from '../components/CommentCount';
 
 import { user } from '../utils/interface/userInterface';
 
@@ -16,14 +16,21 @@ const UserPosts = () => {
    const { userId } = useParams() as { userId: string };
    const { user } = location.state as CustomizedState;
 
-   const { datas: posts } = useAxios(`posts?userId=${parseInt(userId)}`);
+   const posts = useAxios(`posts?userId=${parseInt(userId)}`);
+
+   console.log(posts);
 
    return (
       <div>
          <table>
-            <caption>user {user.name}</caption>
+            <caption>{user.name}'s Posts</caption>
             <DisplayTable objects={posts} properties={[{ key: 'title' }, { key: 'body' }]} />
          </table>
+         <section className='comments'>
+            {posts.map((post: { id: number }) => {
+               return <CommentCount postId={post.id} />;
+            })}
+         </section>
       </div>
    );
 };

@@ -4,9 +4,3 @@ export interface user {
    email: string;
    id: number;
 }
-
-export interface post {
-   title: string;
-   body: string;
-   id: number;
-}

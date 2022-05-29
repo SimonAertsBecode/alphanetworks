@@ -1,0 +1,32 @@
+.users {
+   height: 100%;
+   width: 80%;
+   display: flex;
+   flex-direction: column;
+   font-size: 1.5rem;
+   background-color: transitionColor(0.8);
+   overflow-y: scroll;
+
+   .search_bar {
+      width: 100%;
+      text-align: center;
+      margin: 1rem 0;
+   }
+
+   table {
+      border: 1px solid black;
+      width: 100%;
+      height: 100%;
+      caption {
+         font-weight: bold;
+         text-transform: uppercase;
+      }
+
+      tr:nth-child(odd) {
+         border-bottom: 2px solid;
+         &:hover {
+            cursor: pointer;
+         }
+      }
+   }
+}

@@ -44,7 +44,9 @@ const Users = () => {
 
    return (
       <section className='users'>
-         <SearchBar setSearchUser={setSearchUser} />
+         <section className='search_bar'>
+            <SearchBar setSearchUser={setSearchUser} />
+         </section>
          <table>
             <caption>List of users</caption>
             <DisplayTable

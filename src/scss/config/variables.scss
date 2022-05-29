@@ -1,0 +1,40 @@
+//*variables
+@function backgroundColor($value) {
+   $result: rgba(
+      $color: #343434,
+      $alpha: $value,
+   );
+   @return $result;
+}
+
+@function transitionColor($value) {
+   $result: rgba(
+      $color: #2f3061,
+      $alpha: $value,
+   );
+   @return $result;
+}
+
+@function contrastColor($value) {
+   $result: rgba(
+      $color: #0e34a0,
+      $alpha: $value,
+   );
+   @return $result;
+}
+
+@function titleColor($value) {
+   $result: rgba(
+      $color: #5f5980,
+      $alpha: $value,
+   );
+   @return $result;
+}
+
+@function policeColor($value) {
+   $result: rgba(
+      $color: #dfdfdf,
+      $alpha: $value,
+   );
+   @return $result;
+}

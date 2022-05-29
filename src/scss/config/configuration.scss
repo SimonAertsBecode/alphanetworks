@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Gentium+Basic&family=Poiret+One&display=swap');
+
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: content-box;
+   &:not(button) {
+      font-family: 'Gentium Basic', serif;
+   }
+}
+
+body {
+   width: 100%;
+   min-height: 100vh;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba($color: #343434, $alpha: 1);
+
+   .App {
+      width: 80vw;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: rgba($color: #dfdfdf, $alpha: 1);
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+         font-family: 'Poiret One', cursive;
+         color: rgba($color: #5f5980, $alpha: 1);
+      }
+   }
+}

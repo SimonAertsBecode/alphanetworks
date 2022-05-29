@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/alphanetworks/static/css/main.36886951.css",
+    "main.js": "/alphanetworks/static/js/main.de8134b1.js",
+    "index.html": "/alphanetworks/index.html",
+    "main.36886951.css.map": "/alphanetworks/static/css/main.36886951.css.map",
+    "main.de8134b1.js.map": "/alphanetworks/static/js/main.de8134b1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.36886951.css",
+    "static/js/main.de8134b1.js"
+  ]
+}

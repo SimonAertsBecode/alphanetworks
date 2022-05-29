@@ -3,26 +3,26 @@ import { Location } from 'history';
 import { useLocation, useParams } from 'react-router-dom';
 import DisplayTable from '../components/DisplayTable';
 
+import { user } from '../utils/interface/userInterface';
+
+interface CustomizedState {
+   user: user;
+}
+
 const UserPosts = () => {
+   const location = useLocation();
+
    // {userId : string} is mandatory otherwise 'userId' can be undefined
    const { userId } = useParams() as { userId: string };
-   const { state } = useLocation();
+   const { user } = location.state as CustomizedState;
 
-   const post = useAxios(`posts?userId=${parseInt(userId)}`);
+   const { datas: posts } = useAxios(`posts?userId=${parseInt(userId)}`);
 
    return (
       <div>
          <table>
-            <caption>user post</caption>
-            <thead>
-               <tr>
-                  <th>title</th>
-                  <th>content</th>
-               </tr>
-            </thead>
-            <tbody>
-               <DisplayTable objects={post} properties={[{ key: 'title' }, { key: 'body' }]} />
-            </tbody>
+            <caption>user {user.name}</caption>
+            <DisplayTable objects={posts} properties={[{ key: 'title' }, { key: 'body' }]} />
          </table>
       </div>
    );

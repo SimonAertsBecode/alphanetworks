@@ -9,15 +9,15 @@ import { useAxios } from '../utils/hooks/useApi';
 import { user } from '../utils/interface/userInterface';
 
 const Users = () => {
-   const users = useAxios('users');
+   const { datas: users } = useAxios('users');
 
    const [searchUser, setSearchUser] = useState<string>('');
 
-      const navigate = useNavigate();
+   const navigate = useNavigate();
 
-      const handleRoute = (id: number, user: user) => {
-         navigate(`posts/${id}`, { state: { user } });
-      };
+   const handleRoute = (id: number, user: user) => {
+      navigate(`posts/${id}`, { state: { user } });
+   };
 
    const filteredUsers = () => {
       const filteredUsers = users.filter((user: user) => {
@@ -43,21 +43,12 @@ const Users = () => {
       <section className='users'>
          <SearchBar setSearchUser={setSearchUser} />
          <table>
-            <caption>Users</caption>
-            <thead>
-               <tr>
-                  <th>Name</th>
-                  <th>Username</th>
-                  <th>Email</th>
-               </tr>
-            </thead>
-            <tbody>
-               <DisplayTable
-                  objects={filteredUsers()}
-                  properties={[{ key: 'name' }, { key: 'username' }, { key: 'email' }]}
-                  navigation={handleRoute}
-               />
-            </tbody>
+            <caption>List of users</caption>
+            <DisplayTable
+               objects={filteredUsers()}
+               properties={[{ key: 'name' }, { key: 'username' }, { key: 'email' }]}
+               navigation={handleRoute}
+            />
          </table>
       </section>
    );

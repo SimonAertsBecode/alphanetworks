@@ -9,5 +9,5 @@ export const useAxios = (element: 'users' | 'comments' | `posts?userId=${number}
       console.log('api useEffect called');
    }, [element]);
 
-   return datas;
+   return { datas };
 };

@@ -1,5 +1,3 @@
-import React, { useState } from 'react';
-
 const SearchBar = ({ setSearchUser }: { setSearchUser: React.Dispatch<React.SetStateAction<string>> }) => {
    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
       e.preventDefault();

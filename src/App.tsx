@@ -1,4 +1,3 @@
-import Users from './pages/Users';
 import Routes from './routes/Routes';
 
 function App() {

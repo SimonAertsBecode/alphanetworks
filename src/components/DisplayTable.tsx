@@ -1,13 +1,15 @@
 import { PropsWithChildren } from 'react';
+import CommentCount from './CommentCount';
 
-import { user } from '../utils/interface/userInterface';
+import { User } from '../utils/interface/userInterface';
 
 interface Props<ObjectType> {
    objects: ObjectType[];
    properties: {
       [key: string]: keyof ObjectType;
    }[];
-   navigation?(id: number, user?: user): void;
+   navigation?(id: number, user?: User): void;
+   children?: boolean;
 }
 
 const DisplayTable = <ObjectType extends { id: number }>(props: PropsWithChildren<Props<ObjectType>>) => {
@@ -31,7 +33,7 @@ const DisplayTable = <ObjectType extends { id: number }>(props: PropsWithChildre
                return (
                   <tr key={object.id} onClick={navigation ? () => navigation(object.id, object) : undefined}>
                      {displayKeys('td', object)}
-                     {children}
+                     {children ? <CommentCount postId={object.id} /> : null}
                   </tr>
                );
             })}

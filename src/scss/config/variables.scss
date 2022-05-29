@@ -1,5 +1,5 @@
 //*variables
-@function backgroundColor($value) {
+@function policeColor($value) {
    $result: rgba(
       $color: #343434,
       $alpha: $value,
@@ -23,15 +23,7 @@
    @return $result;
 }
 
-@function titleColor($value) {
-   $result: rgba(
-      $color: #5f5980,
-      $alpha: $value,
-   );
-   @return $result;
-}
-
-@function policeColor($value) {
+@function backgroundColor($value) {
    $result: rgba(
       $color: #dfdfdf,
       $alpha: $value,

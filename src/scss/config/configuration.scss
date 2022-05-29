@@ -17,7 +17,7 @@ body {
    display: flex;
    justify-content: center;
    align-items: center;
-   background-color: rgba($color: #343434, $alpha: 1);
+   background-color: rgba($color: #dfdfdf, $alpha: 1);
 
    .App {
       width: 80vw;
@@ -26,7 +26,7 @@ body {
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      color: rgba($color: #dfdfdf, $alpha: 1);
+      color: rgba($color: #343434, $alpha: 1);
 
       h1,
       h2,
@@ -35,7 +35,6 @@ body {
       h5,
       h6 {
          font-family: 'Poiret One', cursive;
-         color: rgba($color: #5f5980, $alpha: 1);
       }
    }
 }

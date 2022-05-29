@@ -6,7 +6,7 @@ import SearchBar from '../components/SearchBar';
 
 import { useAxios } from '../utils/hooks/useAxios';
 
-import { user } from '../utils/interface/userInterface';
+import { User } from '../utils/interface/userInterface';
 
 const Users = () => {
    const users = useAxios('users');
@@ -16,14 +16,14 @@ const Users = () => {
    const navigate = useNavigate();
 
    const handleRoutes = useCallback(
-      (id: number, user: user) => {
+      (id: number, user: User) => {
          navigate(`posts/${id}`, { state: { user } });
       },
       [navigate]
    );
 
    const filteredUsers = () => {
-      const filteredUsers = users.filter((user: user) => {
+      const filteredUsers = users.filter((user: User) => {
          const { name, username, email } = user;
          if (searchUser === '') {
             return users;
@@ -44,7 +44,7 @@ const Users = () => {
 
    return (
       <section className='users'>
-         <section className='search_bar'>
+         <section className='search-bar'>
             <SearchBar setSearchUser={setSearchUser} />
          </section>
          <table>

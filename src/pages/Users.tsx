@@ -43,12 +43,12 @@ const Users = () => {
    if (!users) return <p>Oops something went wrong while calling users...</p>;
 
    return (
-      <section className='users'>
+      <section className='table-user'>
          <h1>List of users</h1>
          <section className='search-bar'>
             <SearchBar setSearchUser={setSearchUser} />
          </section>
-         <section className='table'>
+         <section className='container-table'>
             <table>
                <DisplayTable
                   objects={filteredUsers()}

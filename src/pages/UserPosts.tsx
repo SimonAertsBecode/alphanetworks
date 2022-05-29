@@ -23,13 +23,14 @@ const UserPosts = () => {
    };
 
    return (
-      <section className='user-post'>
+      <section className='table-post'>
+         <h2>{user.name}'s Posts</h2>
          <button onClick={goBack}>Go back</button>
-         <table>
-            <caption>{user.name}'s Posts</caption>
-            <DisplayTable objects={posts} properties={[{ key: 'title' }, { key: 'body' }]} children={true} />
-         </table>
-         <section className='comments'></section>
+         <section className='container-table'>
+            <table>
+               <DisplayTable objects={posts} properties={[{ key: 'title' }, { key: 'body' }]} children={true} />
+            </table>
+         </section>
       </section>
    );
 };

@@ -44,17 +44,19 @@ const Users = () => {
 
    return (
       <section className='users'>
+         <h1>List of users</h1>
          <section className='search-bar'>
             <SearchBar setSearchUser={setSearchUser} />
          </section>
-         <table>
-            <caption>List of users</caption>
-            <DisplayTable
-               objects={filteredUsers()}
-               properties={[{ key: 'name' }, { key: 'username' }, { key: 'email' }]}
-               navigation={handleRoutes}
-            />
-         </table>
+         <section className='table'>
+            <table>
+               <DisplayTable
+                  objects={filteredUsers()}
+                  properties={[{ key: 'name' }, { key: 'username' }, { key: 'email' }]}
+                  navigation={handleRoutes}
+               />
+            </table>
+         </section>
       </section>
    );
 };

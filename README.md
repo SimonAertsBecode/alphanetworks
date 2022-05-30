@@ -4,6 +4,8 @@ Welcome on the README of Alphanetworks project.
 
 Stack and pattern that have been used are:
 
+> Typescript.
+>
 > React.
 >
 > Scss.

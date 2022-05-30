@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/alphanetworks/static/css/main.ae266467.css",
+    "main.css": "/alphanetworks/static/css/main.93e7679f.css",
     "main.js": "/alphanetworks/static/js/main.a6869f3e.js",
     "index.html": "/alphanetworks/index.html",
-    "main.ae266467.css.map": "/alphanetworks/static/css/main.ae266467.css.map",
+    "main.93e7679f.css.map": "/alphanetworks/static/css/main.93e7679f.css.map",
     "main.a6869f3e.js.map": "/alphanetworks/static/js/main.a6869f3e.js.map"
   },
   "entrypoints": [
-    "static/css/main.ae266467.css",
+    "static/css/main.93e7679f.css",
     "static/js/main.a6869f3e.js"
   ]
 }

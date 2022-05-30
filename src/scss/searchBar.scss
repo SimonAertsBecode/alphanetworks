@@ -1,6 +1,10 @@
 .search-bar {
+   width: 100%;
+   text-align: center;
+   margin: 1rem 0;
    label {
       margin-right: 0.5rem;
+      font-size: 1.4em;
    }
    input {
       outline: none;

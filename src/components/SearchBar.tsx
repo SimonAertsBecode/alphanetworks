@@ -6,7 +6,7 @@ const SearchBar = ({ setSearchUser }: { setSearchUser: React.Dispatch<React.SetS
 
    return (
       <>
-         <label htmlFor='search_user'>Search for a user: </label>
+         <label htmlFor='search_user'>Search for a user (name, username or email): </label>
          <input type={'search'} onChange={handleInput} placeholder={'Search...'} id={'search_user'}></input>
       </>
    );

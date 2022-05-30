@@ -1,11 +1,14 @@
-import { useAxios } from '../utils/hooks/useAxios';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+
+//**Components import */
 import DisplayTable from '../components/DisplayTable';
 
+//**Utils import */
 import { User } from '../utils/interface/userInterface';
+import { useAxios } from '../utils/hooks/useAxios';
 
 interface LocationState {
-   user: User;
+   item: User;
 }
 
 const UserPosts = () => {
@@ -14,7 +17,7 @@ const UserPosts = () => {
 
    // {userId : string} is mandatory otherwise 'userId' can be undefined
    const { userId } = useParams() as { userId: string };
-   const { user } = location.state as LocationState;
+   const { item: user } = location.state as LocationState;
 
    const posts = useAxios(`posts?userId=${parseInt(userId)}`);
 

@@ -1,11 +1,12 @@
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+//**Componenents import */
 import DisplayTable from '../components/DisplayTable';
 import SearchBar from '../components/SearchBar';
 
+//**Utils import */
 import { useAxios } from '../utils/hooks/useAxios';
-
 import { User } from '../utils/interface/userInterface';
 
 const Users = () => {
@@ -15,12 +16,9 @@ const Users = () => {
 
    const navigate = useNavigate();
 
-   const handleRoutes = useCallback(
-      (id: number, user: User) => {
-         navigate(`posts/${id}`, { state: { user } });
-      },
-      [navigate]
-   );
+   const handleRoutes = (id: number, item: {}) => {
+      navigate(`posts/${id}`, { state: { item } });
+   };
 
    const filteredUsers = () => {
       const filteredUsers = users.filter((user: User) => {

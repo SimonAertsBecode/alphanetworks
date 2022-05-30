@@ -13,10 +13,21 @@
       font-size: 3em;
    }
 
+   thead {
+      tr {
+         th {
+            width: 33%;
+         }
+      }
+   }
+
    tbody {
       tr {
          &:hover {
             cursor: pointer;
+         }
+         td {
+            max-width: 33%;
          }
       }
    }

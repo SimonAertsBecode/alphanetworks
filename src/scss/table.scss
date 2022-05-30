@@ -33,18 +33,12 @@
             vertical-align: top;
             text-align: left;
             font-size: 1.4em;
-            th {
-               width: 33%;
-            }
          }
       }
 
       tbody {
          tr {
             border-bottom: solid 1px rgba($color: #000000, $alpha: 0.1);
-            td {
-               width: 33%;
-            }
          }
       }
    }

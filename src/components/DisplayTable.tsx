@@ -1,5 +1,3 @@
-import { PropsWithChildren } from 'react';
-
 //**Components import */
 import CommentCount from './CommentCount';
 
@@ -24,7 +22,7 @@ const DisplayTable = <ObjectType extends { id: number }>(props: Props<ObjectType
          const ChosenTag = `${tag}` as keyof JSX.IntrinsicElements;
          return (
             <ChosenTag key={key as string}>
-               {object ? object[key as keyof object] : firstLetterUppercase(key as string)}
+               <>{object ? object[key] : firstLetterUppercase(key as string)}</>
             </ChosenTag>
          );
       });

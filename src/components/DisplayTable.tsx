@@ -9,7 +9,7 @@ interface Props<ObjectType> {
    properties: {
       key: keyof ObjectType;
    }[];
-   navigation?(id: number, item?: {}): void;
+   navigation?<T>(id: number, item?: T): void;
    children?: boolean;
 }
 

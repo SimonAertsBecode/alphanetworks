@@ -15,11 +15,10 @@ const UserPosts = () => {
    const location = useLocation();
    const navigate = useNavigate();
 
-   // {userId : string} is mandatory otherwise 'userId' can be undefined
-   const { userId } = useParams() as { userId: string };
+   const { userId } = useParams();
    const { item: user } = location.state as LocationState;
 
-   const posts = useAxios(`posts?userId=${parseInt(userId)}`);
+   const posts = useAxios(`posts?userId=${parseInt(userId!)}`);
 
    const goBack = () => {
       navigate(-1);

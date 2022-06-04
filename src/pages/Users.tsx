@@ -10,13 +10,13 @@ import { useAxios } from '../utils/hooks/useAxios';
 import { User } from '../utils/interface/interfaces';
 
 const Users = () => {
+   const navigate = useNavigate();
+
    const users = useAxios('users');
 
    const [searchUser, setSearchUser] = useState<string>('');
 
-   const navigate = useNavigate();
-
-   const handleRoutes = (id: number, item: {}) => {
+   const handleRoutes = <T,>(id: number, item: T) => {
       navigate(`posts/${id}`, { state: { item } });
    };
 

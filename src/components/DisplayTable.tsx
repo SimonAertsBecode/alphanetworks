@@ -19,7 +19,7 @@ const DisplayTable = <ObjectType extends { id: number }>(props: Props<ObjectType
    const displayKeys = (tag: 'th' | 'td', object?: ObjectType): JSX.Element[] => {
       return properties.map((propertie) => {
          const { key } = propertie;
-         const ChosenTag = `${tag}` as keyof JSX.IntrinsicElements;
+         const ChosenTag = tag as keyof JSX.IntrinsicElements;
          return (
             <ChosenTag key={key as string}>
                <>{object ? object[key] : firstLetterUppercase(key as string)}</>

@@ -7,7 +7,7 @@ import SearchBar from '../components/SearchBar';
 
 //**Utils import */
 import { useAxios } from '../utils/hooks/useAxios';
-import { User } from '../utils/interface/userInterface';
+import { User } from '../utils/interface/interfaces';
 
 const Users = () => {
    const users = useAxios('users');

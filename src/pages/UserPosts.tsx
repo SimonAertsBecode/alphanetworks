@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import DisplayTable from '../components/DisplayTable';
 
 //**Utils import */
-import { User } from '../utils/interface/userInterface';
+import { User } from '../utils/interface/interfaces';
 import { useAxios } from '../utils/hooks/useAxios';
 
 interface LocationState {

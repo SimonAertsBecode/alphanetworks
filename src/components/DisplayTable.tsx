@@ -15,10 +15,10 @@ interface Props<ObjectType> {
    children?: boolean;
 }
 
-const DisplayTable = <ObjectType extends { id: number }>(props: PropsWithChildren<Props<ObjectType>>) => {
+const DisplayTable = <ObjectType extends { id: number }>(props: Props<ObjectType>) => {
    const { objects, properties, navigation, children } = props;
 
-   const displayKeys = (tag: 'th' | 'td', object?: ObjectType | undefined): JSX.Element[] => {
+   const displayKeys = (tag: 'th' | 'td', object?: ObjectType): JSX.Element[] => {
       return properties.map((propertie) => {
          const { key } = propertie;
          const ChosenTag = `${tag}` as keyof JSX.IntrinsicElements;

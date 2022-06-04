@@ -9,7 +9,7 @@ import { firstLetterUppercase } from '../utils/strings/stringManipulation';
 interface Props<ObjectType> {
    objects: ObjectType[];
    properties: {
-      [key: string]: keyof ObjectType;
+      key: keyof ObjectType;
    }[];
    navigation?(id: number, item?: {}): void;
    children?: boolean;
@@ -40,7 +40,7 @@ const DisplayTable = <ObjectType extends { id: number }>(props: Props<ObjectType
                return (
                   <tr key={object.id} onClick={navigation ? () => navigation(object.id, object) : undefined}>
                      {displayKeys('td', object)}
-                     {children ? <CommentCount postId={object.id} /> : null}
+                     {children && <CommentCount postId={object.id} />}
                   </tr>
                );
             })}

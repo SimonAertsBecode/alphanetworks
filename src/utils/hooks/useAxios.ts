@@ -1,12 +1,22 @@
 import { useState, useEffect } from 'react';
-import axiosApi from '../api/axiosApi';
+import axios from 'axios';
 
-export const useAxios = (element: 'users' | `posts?userId=${number}` | `posts/${number}/comments`) => {
+export const useAxios = (url: 'users' | `posts?userId=${number}` | `posts/${number}/comments`) => {
    const [datas, setDatas] = useState([]);
 
+   const fetch = async () => {
+      try {
+         const request = await axios.get(`https://jsonplaceholder.typicode.com/${url}`);
+         const response = request.data;
+         if (response) setDatas(response);
+      } catch (error) {
+         throw error;
+      }
+   };
+
    useEffect(() => {
-      axiosApi(element, setDatas);
-   }, [element]);
+      fetch();
+   }, [url]);
 
    return datas;
 };

@@ -2,7 +2,7 @@
 import CommentCount from './CommentCount';
 
 //**Utils import */
-import { firstLetterUppercase } from '../utils/strings/stringManipulation';
+import { firstLetterUppercase } from '../utils/reusable';
 
 interface Props<ObjectType> {
    objects: ObjectType[];

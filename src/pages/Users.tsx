@@ -27,9 +27,9 @@ const Users = () => {
             return users;
          } else {
             const result =
-               email.toLowerCase().includes(searchUser) ||
-               username.toLowerCase().includes(searchUser) ||
-               name.toLowerCase().includes(searchUser);
+               email.toLowerCase().includes(searchUser.trim()) ||
+               username.toLowerCase().includes(searchUser.trim()) ||
+               name.toLowerCase().includes(searchUser.trim());
 
             return result;
          }

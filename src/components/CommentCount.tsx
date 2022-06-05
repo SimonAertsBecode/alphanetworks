@@ -1,7 +1,17 @@
 import { useAxios } from '../utils/hooks/useAxios';
+//`posts/${postId}/comments`
 
 const CommentCount = ({ postId }: { postId: number }) => {
-   const comments = useAxios(`posts/${postId}/comments`);
+   const {
+      datas: comments,
+      error,
+      loading,
+   } = useAxios<[{}]>({
+      method: 'get',
+      url: `posts/${postId}/comments`,
+   });
+
+   if (!comments) return <p>{error}</p>;
 
    return (
       <td>

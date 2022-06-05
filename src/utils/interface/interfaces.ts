@@ -4,3 +4,13 @@ export interface User {
    email: string;
    id: number;
 }
+
+export interface Post {
+   id: number;
+   title: string;
+   body: string;
+}
+
+export interface Comment {
+   
+}

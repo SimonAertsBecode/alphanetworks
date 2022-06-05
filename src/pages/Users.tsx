@@ -12,16 +12,25 @@ import { User } from '../utils/interface/interfaces';
 const Users = () => {
    const navigate = useNavigate();
 
-   const users = useAxios('users');
+   const {
+      datas: users,
+      error,
+      loading,
+   } = useAxios<User[]>({
+      method: 'get',
+      url: 'users',
+   });
 
    const [searchUser, setSearchUser] = useState<string>('');
+
+   if (!users) return <p>Oops something went wrong while calling users...</p>;
 
    const handleRoutes = <T,>(id: number, item: T) => {
       navigate(`posts/${id}`, { state: { item } });
    };
 
    const filteredUsers = () => {
-      const filteredUsers = users.filter((user: User) => {
+      const filteredUsers = users.filter((user) => {
          const { name, username, email } = user;
          if (searchUser === '') {
             return users;
@@ -37,8 +46,6 @@ const Users = () => {
 
       return filteredUsers;
    };
-
-   if (!users) return <p>Oops something went wrong while calling users...</p>;
 
    return (
       <section className='table-user'>

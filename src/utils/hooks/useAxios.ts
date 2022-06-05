@@ -1,22 +1,28 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
-export const useAxios = (url: 'users' | `posts?userId=${number}` | `posts/${number}/comments`) => {
-   const [datas, setDatas] = useState([]);
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com/';
+
+export const useAxios = <T>(axiosParams: AxiosRequestConfig) => {
+   const [datas, setDatas] = useState<T>();
+   const [error, setError] = useState<string | null>(null);
+   const [loading, setLoading] = useState(true);
 
    const fetch = async () => {
       try {
-         const request = await axios.get(`https://jsonplaceholder.typicode.com/${url}`);
+         const request = await axios.request(axiosParams);
          const response = request.data;
-         if (response) setDatas(response);
+         setDatas(response);
       } catch (error) {
-         throw error;
+         setError(JSON.stringify(error));
+      } finally {
+         setLoading(false);
       }
    };
 
    useEffect(() => {
       fetch();
-   }, [url]);
+   }, []);
 
-   return datas;
+   return { datas, error, loading };
 };

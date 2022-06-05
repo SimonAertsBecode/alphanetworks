@@ -4,7 +4,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import DisplayTable from '../components/DisplayTable';
 
 //**Utils import */
-import { User } from '../utils/interface/interfaces';
+import { Post, User } from '../utils/interface/interfaces';
 import { useAxios } from '../utils/hooks/useAxios';
 
 interface LocationState {
@@ -18,7 +18,16 @@ const UserPosts = () => {
    const { userId } = useParams();
    const { item: user } = location.state as LocationState;
 
-   const posts = useAxios(`posts?userId=${parseInt(userId!)}`);
+   const {
+      datas: posts,
+      error,
+      loading,
+   } = useAxios<Post[]>({
+      method: 'get',
+      url: `posts?userId=${parseInt(userId!)}`,
+   });
+
+   if (!posts) return <p>{error}</p>;
 
    const goBack = () => {
       navigate(-1);

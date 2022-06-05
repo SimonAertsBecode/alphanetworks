@@ -12,7 +12,7 @@ import { User } from '../utils/interface/interfaces';
 const Users = () => {
    const navigate = useNavigate();
 
-   const users = useAxios('users');
+   const users: User[] = useAxios('users');
 
    const [searchUser, setSearchUser] = useState<string>('');
 

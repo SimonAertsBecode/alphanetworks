@@ -1,7 +1,15 @@
 .container-table {
    overflow-y: scroll;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
    width: 80%;
    height: 90%;
+
+   p {
+      font-size: 1.8em;
+   }
 
    &::-webkit-scrollbar {
       width: 0.5em;

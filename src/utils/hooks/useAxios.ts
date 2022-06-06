@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
+import { useState, useEffect, useCallback } from 'react';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com/';
 
@@ -8,21 +8,23 @@ export const useAxios = <T>(axiosParams: AxiosRequestConfig) => {
    const [error, setError] = useState<string | null>(null);
    const [loading, setLoading] = useState(true);
 
-   const fetch = async () => {
+   const fetch = useCallback(async () => {
       try {
          const request = await axios.request(axiosParams);
          const response = request.data;
          setDatas(response);
-      } catch (error) {
-         setError(JSON.stringify(error));
-      } finally {
-         setLoading(false);
+         setTimeout(() => {
+            setLoading(false);
+         }, 2000);
+      } catch (err) {
+         const error = err as AxiosError;
+         setError(error.message);
       }
-   };
+   }, []);
 
    useEffect(() => {
       fetch();
-   }, []);
+   }, [fetch]);
 
    return { datas, error, loading };
 };

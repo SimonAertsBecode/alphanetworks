@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 //**Componenents import */
 import DisplayTable from '../components/DisplayTable';
 import SearchBar from '../components/SearchBar';
+import Loading from '../components/Loading';
 
 //**Utils import */
 import { useAxios } from '../utils/hooks/useAxios';
@@ -23,7 +24,9 @@ const Users = () => {
 
    const [searchUser, setSearchUser] = useState<string>('');
 
-   if (!users) return <p>Oops something went wrong while calling users...</p>;
+   if (!users) return <p>{error}</p>;
+
+   console.log(loading);
 
    const handleRoutes = <T,>(id: number, item: T) => {
       navigate(`posts/${id}`, { state: { item } });
@@ -54,13 +57,15 @@ const Users = () => {
             <SearchBar setSearchUser={setSearchUser} />
          </section>
          <section className='container-table'>
-            <table>
-               <DisplayTable
-                  objects={filteredUsers()}
-                  properties={[{ key: 'name' }, { key: 'username' }, { key: 'email' }]}
-                  navigation={handleRoutes}
-               />
-            </table>
+            <Loading loading={loading} item={'Calling users...'}>
+               <table>
+                  <DisplayTable
+                     objects={filteredUsers()}
+                     properties={[{ key: 'name' }, { key: 'username' }, { key: 'email' }]}
+                     navigation={handleRoutes}
+                  />
+               </table>
+            </Loading>
          </section>
       </section>
    );

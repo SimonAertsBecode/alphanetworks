@@ -2,6 +2,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 //**Components import */
 import DisplayTable from '../components/DisplayTable';
+import Loading from '../components/Loading';
 
 //**Utils import */
 import { Post, User } from '../utils/interface/interfaces';
@@ -38,9 +39,11 @@ const UserPosts = () => {
          <h2>{user.name}'s Posts</h2>
          <button onClick={goBack}>Go back</button>
          <section className='container-table'>
-            <table>
-               <DisplayTable objects={posts} properties={[{ key: 'title' }, { key: 'body' }]} children={true} />
-            </table>
+            <Loading loading={loading} item={`Getting ${user.name}'s posts...`}>
+               <table>
+                  <DisplayTable objects={posts} properties={[{ key: 'title' }, { key: 'body' }]} children={true} />
+               </table>
+            </Loading>
          </section>
       </section>
    );

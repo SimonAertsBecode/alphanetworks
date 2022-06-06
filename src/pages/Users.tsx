@@ -26,8 +26,6 @@ const Users = () => {
 
    if (!users) return <p>{error}</p>;
 
-   console.log(loading);
-
    const handleRoutes = <T,>(id: number, item: T) => {
       navigate(`posts/${id}`, { state: { item } });
    };

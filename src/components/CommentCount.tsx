@@ -6,7 +6,8 @@ const CommentCount = ({ postId }: { postId: number }) => {
       url: `posts/${postId}/comments`,
    });
 
-   if (!comments) return <p>{error}</p>;
+   //cannot set p or span as tags inside <tr>
+   if (!comments) return <>{error}</>;
 
    return (
       <td>

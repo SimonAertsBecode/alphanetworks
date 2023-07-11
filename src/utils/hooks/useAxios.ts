@@ -8,22 +8,23 @@ export const useAxios = <T>(axiosParams: AxiosRequestConfig) => {
    const [error, setError] = useState<string | null>(null);
    const [loading, setLoading] = useState(true);
 
-   const fetch = async () => {
-      try {
-         const request = await axios.request(axiosParams);
-         const response = request.data;
-         setDatas(response);
-      } catch (err) {
-         const error = err as AxiosError;
-         setError(error.message);
-      } finally {
-         setLoading(false);
-      }
-   };
 
    useEffect(() => {
+      const fetch = async () => {
+         try {
+            const request = await axios.request(axiosParams);
+            const response = request.data;
+            setDatas(response);
+         } catch (err) {
+            const error = err as AxiosError;
+            setError(error.message);
+         } finally {
+            setLoading(false);
+         }
+      };
+
       fetch();
-   }, []); //dependency warning about fetch fct ==> if put, infinite loop.
+   }, [axiosParams]);
 
    return { datas, error, loading } as const;
 };
